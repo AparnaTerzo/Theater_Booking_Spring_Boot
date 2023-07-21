@@ -37,8 +37,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public MovieDto saveMovie(MovieDto movieDto) {
-        Theater theater = theaterRepository.findById(movieDto.getTheaterId())
-                .orElseThrow(() -> new EntityNotFoundException("Threater not found with Id: " + movieDto.getTheaterId()));
         Movies movie = MovieMapper.mapToMovie(movieDto);
         Movies save = movieRepository.save(movie);
 
@@ -53,12 +51,6 @@ public class MovieServiceImpl implements MovieService {
 
     }
 
-//    @Override
-//    public List<MovieDto> getMoviesByTheaterId(int theaterId) {
-//        List<Movies> movies = movieRepository.findMoviesByTheater_TheaterId(theaterId);
-//        return movies.stream()
-//                .map((t) -> mapToMovieDto(t)).collect(Collectors.toList());
-//    }
 
 
 }

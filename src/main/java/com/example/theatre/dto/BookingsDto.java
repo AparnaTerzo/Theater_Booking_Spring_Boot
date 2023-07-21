@@ -15,6 +15,7 @@ public class BookingsDto {
     private int silverSeats;
     private int goldSeats;
     private double price;
+    private String status;
     private Date date;
 //    private int movieId;
 //    private int screenId;

@@ -17,7 +17,7 @@ public class MovieDto {
     private String posterUrl;
     private String cast;
     private LocalDate releaseDate;
-    private int theaterId;
+
 
 
 }

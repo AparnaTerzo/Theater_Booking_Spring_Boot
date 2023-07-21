@@ -12,6 +12,7 @@ public class BookingMapper {
 
     public static Bookings mapToBooking(BookingsDto bookingsDto) {
         Bookings bookings = Bookings.builder()
+                .bookId(bookingsDto.getBookId())
                 .customerName(bookingsDto.getCustomerName())
                 .date(bookingsDto.getDate())
                 .price(bookingsDto.getPrice())
@@ -26,12 +27,14 @@ public class BookingMapper {
     public static BookingsDto mapToBookingDto(Bookings bookings) {
 
         BookingsDto bookingsDto = BookingsDto.builder()
+                .bookId(bookings.getBookId())
                 .customerName(bookings.getCustomerName())
                 .date(bookings.getDate())
                 .price(bookings.getPrice())
                 .platinumSeats(bookings.getPlatinumSeats())
                 .goldSeats(bookings.getGoldSeats())
                 .silverSeats(bookings.getSilverSeats())
+                .showId(bookings.getShow().getShowId())
                 .build();
         return bookingsDto;
     }

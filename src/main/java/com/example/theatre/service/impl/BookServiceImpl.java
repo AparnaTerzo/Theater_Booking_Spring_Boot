@@ -41,10 +41,19 @@ public class BookServiceImpl implements BookService {
 //        bookings.setTheater(showTiming.getTheater());
 //        bookings.setMovie(showTiming.getMovie());
         Screen screen = showTiming.getScreen();
-        screen.setGoldSeats(screen.getGoldSeats()-bookings.getGoldSeats());//Deduct Gold seats when a user books
-        screen.setPlatinumSeats(screen.getPlatinumSeats()-bookings.getPlatinumSeats());
-        screen.setSilverSeats(screen.getSilverSeats()-bookings.getSilverSeats());
-        screen.setCapacity(screen.getCapacity()-bookings.getSilverSeats()-bookings.getPlatinumSeats()-bookings.getGoldSeats());
+        if(screen.getCapacity() > 0){
+            screen.setGoldSeats(screen.getGoldSeats()-bookings.getGoldSeats());//Deduct Gold seats when a user books
+            screen.setPlatinumSeats(screen.getPlatinumSeats()-bookings.getPlatinumSeats());
+            screen.setSilverSeats(screen.getSilverSeats()-bookings.getSilverSeats());
+            screen.setCapacity(screen.getCapacity()-bookings.getSilverSeats()-bookings.getPlatinumSeats()-bookings.getGoldSeats());
+        }
+        else{
+
+            return null;
+        }
+
+
+
         return bookingRepository.save(bookings);
     }
 

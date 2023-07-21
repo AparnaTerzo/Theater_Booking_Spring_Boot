@@ -54,12 +54,6 @@ public class UserController {
         return movie;
     }
 
-//    @GetMapping("/movie/{theaterId}")
-//    public List<MovieDto> getMoviesByTheaterId(@PathVariable int theaterId) {
-//        List<MovieDto> movies = movieService.getMoviesByTheaterId(theaterId);
-//        return movies;
-//    }
-
 
     @GetMapping("/screen")
     public List<ScreenDto> listScreen(){
@@ -84,9 +78,21 @@ public class UserController {
     }
 
     @PostMapping("show/{showId}/bookings")
-    public Bookings  bookSeatForShow(@PathVariable int showId,@RequestBody BookingsDto bookingsDto){
+    public BookingsDto  bookSeatForShow(@PathVariable int showId,@RequestBody BookingsDto bookingsDto){
         bookingsDto.setShowId(showId);
-        return bookService.saveBook(bookingsDto);
+        Bookings bookings=bookService.saveBook(bookingsDto);
+
+         if( bookings== null){
+             bookingsDto.setStatus("jj");
+             return bookingsDto;
+
+         }
+         else{
+             bookingsDto.setStatus("Success");
+             bookingsDto.setBookId(bookings.getBookId());
+             return bookingsDto;
+         }
+
     }
 
 

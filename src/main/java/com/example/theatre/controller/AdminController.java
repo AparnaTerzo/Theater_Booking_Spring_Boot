@@ -19,6 +19,7 @@ public class AdminController {
     private final TheaterService theaterService;
     private final ScreenService screenService;
     private final ShowService showService;
+    private final BookService bookService;
 
     @PostMapping("/city/add")
     public void saveCity(@RequestBody CityDto cityDto){
@@ -40,11 +41,6 @@ public class AdminController {
     }
 
 
-//    @PostMapping("/movie/{theatreId}")
-//    public void saveMovie(@RequestBody MovieDto movieDto, @PathVariable int theatreId) {
-//        movieService.saveMovie(movieDto, theatreId);
-//    }
-
     @PostMapping("/screen/add")
     public void saveScreen(@RequestBody ScreenDto screenDto) {
         ScreenDto screen = screenService.saveScreen(screenDto);
@@ -55,6 +51,12 @@ public class AdminController {
     public void saveShow(@RequestBody ShowDto showDto) {
 
         ShowDto show = showService.saveShow(showDto);
+    }
+
+    @GetMapping("/bookings")
+    public List<BookingsDto> listBookings(){
+        List<BookingsDto> bookings= bookService.getAllBookings();
+        return bookings;
     }
 
 
